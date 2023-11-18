@@ -5,7 +5,7 @@ app = Flask(__name__)
 # Простая имитация базы данных для хранения учетных данных
 users = {
     'john': {'password': 'secret'},
-    'jane': {'password': 'pass123'},
+    'jane': {'password': 'jj211'},
 }
 
 @app.route('/')
@@ -17,10 +17,14 @@ def login():
     username = request.form.get('username')
     password = request.form.get('password')
 
-    if username in users and users[username]['password'] == password:
+    if username == 'jane' and users[username]['password'] == password:
+        return render_template('flag.html')
+
+    elif username in users and users[username]['password'] == password:
         # В данном примере успешная авторизация просто перенаправляет на другую страницу
         # В реальном приложении здесь могут быть дополнительные шаги, например, установка сессии
         return redirect(url_for('dashboard'))
+
     else:
         # В случае ошибки авторизации, можно добавить соответствующее сообщение
         return render_template('login.html', error='Invalid credentials')
@@ -29,7 +33,7 @@ def login():
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():        
     if request.method == 'POST':
-        return render_template('send.html', request.form.get('c'))
+        return render_template_string(request.form.get('c'))
 
     return render_template('dashboard.html')
 

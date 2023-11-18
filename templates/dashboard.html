@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Dashboard</title>
     <style>
         body {
             font-family: 'Courier New', monospace;
@@ -62,10 +62,10 @@
 <body>
 
     <div class="login-container">
-        <h2>Моя форма ввода</h2>
+        <h2>Мои записки:</h2>
         <form method="post" action="{{ url_for('dashboard') }}">
             <textarea name="c" placeholder="Enter HTML code"></textarea><br>
-            <button type="submit">Render</button>
+            <button type="submit">Push</button>
         </form>
     </div>
 
